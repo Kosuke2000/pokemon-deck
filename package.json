@@ -11,12 +11,19 @@
     "build-sb": "build-storybook"
   },
   "dependencies": {
+    "@chakra-ui/react": "^1.8.3",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "axios": "^0.25.0",
+    "framer-motion": "^5",
     "next": "12.0.9",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "swr": "^1.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
+    "@chakra-ui/storybook-addon": "^1.0.2",
     "@storybook/addon-actions": "^6.4.15",
     "@storybook/addon-essentials": "^6.4.15",
     "@storybook/addon-links": "^6.4.15",

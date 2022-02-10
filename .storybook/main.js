@@ -5,6 +5,7 @@ module.exports = {
   /** Expose public folder to storybook as static */
   staticDirs: ["../public"],
   addons: [
+    "@chakra-ui/storybook-addon",
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     {

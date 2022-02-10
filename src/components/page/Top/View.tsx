@@ -1,17 +1,23 @@
+import axios from "axios";
 import { VFC } from "react";
+import useSWR from "swr";
 
-import { UserTable } from "@/components/model/User/UserTable";
+import { PokemonCard } from "@/components/model/PokemonCard/PokemonCard";
 
-import { Spacer } from "@/components/ui/Spacer";
-
-import { mockUserList } from "@/mocks/User";
+import { mockPikachu } from "@/mocks/Pokemon";
 
 export const TopPageView: VFC = () => {
+  const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+  const { data, error } = useSWR(
+    "https://pokeapi.co/api/v2/pokemon/pikachu",
+    fetcher
+  );
+
+  console.log({ data });
+
   return (
-    <main className="flex flex-col justify-center items-center p-4 h-screen">
-      <h1>Welcome to Nextwind Prototyping Template!</h1>
-      <Spacer size={32} />
-      <UserTable users={mockUserList} />
+    <main>
+      <PokemonCard pokemon={mockPikachu} />
     </main>
   );
 };
