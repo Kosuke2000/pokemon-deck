@@ -7,10 +7,7 @@ import { Pokemon } from "@/types/PokemonCard";
 import { mockPokemonList } from "@/mocks/Pokemon";
 
 export const ACTION = [
-  {
-    type: "ピカチュウ",
-    img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-  },
+  { type: "ピカチュウ" },
   { type: "ヒコザル" },
   { type: "ポッチャマ" },
   { type: "ナエトル" },
@@ -24,31 +21,26 @@ export const STORE = [
 ] as const;
 
 export type Action = typeof ACTION[number];
+export type State = typeof STORE[number];
 
-const ActionStoreMap = ACTION.map((action, i) => {
-  return { action: action, state: STORE[i] };
-});
+type Reducertype = typeof reducer;
+
+const reducer = (state: State, action: Action) => {
+  switch (action.type) {
+    case ACTION[0].type:
+      return STORE[0];
+    case ACTION[1].type:
+      return STORE[1];
+    case ACTION[2].type:
+      return STORE[2];
+    case ACTION[3].type:
+      return STORE[3];
+    default:
+      return state;
+  }
+};
 
 export const useMockPokemon = () => {
-  type State = typeof STORE[number];
-
-  type Reducertype = typeof reducer;
-
-  const reducer = (state: State, action: Action) => {
-    switch (action.type) {
-      case ACTION[0].type:
-        return STORE[0];
-      case ACTION[1].type:
-        return STORE[1];
-      case ACTION[2].type:
-        return STORE[2];
-      case ACTION[3].type:
-        return STORE[3];
-      default:
-        return state;
-    }
-  };
-
   const [{ mockdata }, dispatch] = useReducer<Reducertype>(reducer, {
     mockdata: mockPokemonList[2],
   });
@@ -73,8 +65,8 @@ export const useMockPokemon = () => {
       </form>
     );
   };
-  type ReturnType = [{ mockdata: Pokemon }, VFC];
 
+  type ReturnType = [{ mockdata: Pokemon }, VFC];
   const r: ReturnType = [{ mockdata }, Decider];
 
   return r;

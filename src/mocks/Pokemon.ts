@@ -13,7 +13,7 @@ export const mockHicozaru: Pokemon = {
   abilities: [{ ability: "ひのこ" }, { ability: "100万ボルト" }],
   types: [{ type: "electric" }],
   sprite:
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/390.png",
 };
 
 export const mockPocchama: Pokemon = {
@@ -21,7 +21,7 @@ export const mockPocchama: Pokemon = {
   abilities: [{ ability: "みずでっぽう" }, { ability: "100万ボルト" }],
   types: [{ type: "electric" }],
   sprite:
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/393.png",
 };
 
 export const mockNaetoru: Pokemon = {
@@ -29,7 +29,7 @@ export const mockNaetoru: Pokemon = {
   abilities: [{ ability: "ひぐちカッター" }, { ability: "100万ボルト" }],
   types: [{ type: "electric" }],
   sprite:
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png",
 };
 
 export const mockPokemonList = [
