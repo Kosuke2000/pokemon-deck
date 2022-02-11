@@ -2,9 +2,7 @@ import { Badge, useColorModeValue } from "@chakra-ui/react";
 import { VFC } from "react";
 
 interface TypeBadge {
-  type: {
-    type: string;
-  };
+  type: string;
 }
 
 export const TypeBadge: VFC<TypeBadge> = ({ type }) => {
@@ -17,7 +15,7 @@ export const TypeBadge: VFC<TypeBadge> = ({ type }) => {
         bg={useColorModeValue("gray.50", "gray.800")}
         fontWeight={"400"}
       >
-        {type.type}
+        {type}
       </Badge>
     </>
   );

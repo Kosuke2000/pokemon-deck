@@ -1,12 +1,14 @@
 export type Pokemon = {
   name: string;
   abilities: {
-    ability: string;
+    ability: { name: string };
   }[];
   types: {
-    type: string;
+    type: { name: string };
   }[];
-  sprite: string;
+  sprites: {
+    front_default: string;
+  };
 };
 
 export type PokeCard = {

@@ -2,10 +2,6 @@ import { Select, Input } from "@chakra-ui/react";
 import { useReducer, VFC } from "react";
 import { useForm } from "react-hook-form";
 
-import { Pokemon } from "@/types/PokemonCard";
-
-import { mockPokemonList } from "@/mocks/Pokemon";
-
 export const ACTION = [
   { type: "ピカチュウ" },
   { type: "ヒコザル" },
@@ -14,10 +10,10 @@ export const ACTION = [
 ] as const;
 
 export const STORE = [
-  { mockdata: mockPokemonList[0] },
-  { mockdata: mockPokemonList[1] },
-  { mockdata: mockPokemonList[2] },
-  { mockdata: mockPokemonList[3] },
+  { API_key: "https://pokeapi.co/api/v2/pokemon/pikachu" },
+  { API_key: "https://pokeapi.co/api/v2/pokemon/chimchar" },
+  { API_key: "https://pokeapi.co/api/v2/pokemon/piplup" },
+  { API_key: "https://pokeapi.co/api/v2/pokemon/turtwig" },
 ] as const;
 
 export type Action = typeof ACTION[number];
@@ -45,8 +41,8 @@ export interface DciderProps {
 }
 
 export const useMockPokemon = () => {
-  const [{ mockdata }, dispatch] = useReducer<Reducertype>(reducer, {
-    mockdata: mockPokemonList[2],
+  const [{ API_key }, dispatch] = useReducer<Reducertype>(reducer, {
+    API_key: "https://pokeapi.co/api/v2/pokemon/turtwig",
   });
 
   const Decider: VFC<DciderProps> = ({ close }) => {
@@ -72,8 +68,8 @@ export const useMockPokemon = () => {
     );
   };
 
-  type ReturnType = [{ mockdata: Pokemon }, VFC<DciderProps>];
-  const r: ReturnType = [{ mockdata }, Decider];
+  type ReturnType = [{ API_key: string }, VFC<DciderProps>];
+  const r: ReturnType = [{ API_key }, Decider];
 
   return r;
 };

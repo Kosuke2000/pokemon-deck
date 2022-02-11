@@ -20,7 +20,7 @@ export interface PokemonProps {
 }
 
 export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open }) => {
-  const { name, abilities, types, sprite } = pokemon;
+  const { name, abilities, types, sprites } = pokemon;
 
   //   // フォームに入力されたポケモンネームをrequestに代入
   //   const [request, setRequest] = useState<string>("pikachu");
@@ -45,7 +45,7 @@ export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open }) => {
       >
         <Avatar
           size={"xl"}
-          src={sprite}
+          src={sprites.front_default}
           mb={4}
           pos={"relative"}
           _after={{
@@ -71,13 +71,13 @@ export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open }) => {
         >
           <ul>
             {abilities.map((ability, i) => {
-              return <li key={i}>{ability.ability}</li>;
+              return <li key={i}>{ability.ability.name}</li>;
             })}
           </ul>
         </Text>
         <Stack align={"center"} justify={"center"} direction={"row"} mt={6}>
           {types.map((type, i) => {
-            return <TypeBadge type={type} key={i} />;
+            return <TypeBadge type={type.type.name} key={i} />;
           })}
         </Stack>
 
