@@ -40,17 +40,23 @@ const reducer = (state: State, action: Action) => {
   }
 };
 
+export interface DciderProps {
+  close: () => void;
+}
+
 export const useMockPokemon = () => {
   const [{ mockdata }, dispatch] = useReducer<Reducertype>(reducer, {
     mockdata: mockPokemonList[2],
   });
 
-  const Decider: VFC = () => {
+  const Decider: VFC<DciderProps> = ({ close }) => {
     const { register, handleSubmit } = useForm();
 
     type Data = { [index: string]: number };
-    const onSubmit: (data: Data) => void = (data: Data) =>
+    const onSubmit: (data: Data) => void = (data: Data) => {
       dispatch(ACTION[data.index]);
+      close();
+    };
 
     return (
       <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex" }}>
@@ -66,7 +72,7 @@ export const useMockPokemon = () => {
     );
   };
 
-  type ReturnType = [{ mockdata: Pokemon }, VFC];
+  type ReturnType = [{ mockdata: Pokemon }, VFC<DciderProps>];
   const r: ReturnType = [{ mockdata }, Decider];
 
   return r;

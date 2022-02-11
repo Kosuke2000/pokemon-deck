@@ -16,16 +16,12 @@ import { TypeBadge } from "@/components/model/PokemonCard/TypeBadge";
 
 export interface PokemonProps {
   pokemon: Pokemon;
+  open: () => void;
 }
 
-export const PokemonCard: VFC<PokemonProps> = ({ pokemon }) => {
+export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open }) => {
   const { name, abilities, types, sprite } = pokemon;
 
-  {
-    abilities.map((ability) => {
-      console.log(ability);
-    });
-  }
   //   // フォームに入力されたポケモンネームをrequestに代入
   //   const [request, setRequest] = useState<string>("pikachu");
 
@@ -97,6 +93,7 @@ export const PokemonCard: VFC<PokemonProps> = ({ pokemon }) => {
             キミに決めた！
           </Button>
           <Button
+            onClick={open}
             flex={1}
             fontSize={"xs"}
             rounded={"full"}
