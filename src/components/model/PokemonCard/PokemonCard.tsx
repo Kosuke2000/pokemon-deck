@@ -64,6 +64,7 @@ export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open, gobi }) => {
         justifyItems={"center"}
       >
         <Box
+          minH={"max-content"}
           mx={"auto"}
           h={"full"}
           maxW={"2xl"}
