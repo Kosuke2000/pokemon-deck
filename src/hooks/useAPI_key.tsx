@@ -58,10 +58,10 @@ export interface DciderProps {
 
 export const useAPI_key = () => {
   const [{ API_key }, dispatch] = useReducer<Reducertype>(reducer, {
-    API_key: "turtwig",
+    API_key: "pikachu",
   });
 
-  const [gobi, setGobi] = useState<string>("トル");
+  const [gobi, setGobi] = useState<string>("チュウ");
 
   const Decider: VFC<DciderProps> = ({ close, open }) => {
     const { register, handleSubmit } = useForm();
