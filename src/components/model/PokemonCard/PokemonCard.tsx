@@ -15,6 +15,8 @@ import {
 } from "@chakra-ui/react";
 import { useState, VFC } from "react";
 
+import { useBudouX } from "@/hooks/useBudouX";
+
 import { Comments, Pokemon } from "@/types/PokemonCard";
 
 import { TypeBadge } from "@/components/model/PokemonCard/TypeBadge";
@@ -29,6 +31,8 @@ export interface PokemonProps {
 
 export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open, gobi }) => {
   const { name, abilities, types, sprites } = pokemon;
+
+  const { parse } = useBudouX();
 
   const [comment, setComment] = useState("よろしく！");
   const [isChat, setChatting] = useState(false);
@@ -67,9 +71,11 @@ export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open, gobi }) => {
           bg={useColorModeValue("white", "gray.900")}
           boxShadow={"2xl"}
           rounded={"lg"}
-          p={6}
+          px={4}
+          py={8}
           textAlign={"center"}
         >
+          <p className="p-4 text-4xl font-bold">{parse("たびのおとも")}</p>
           <Popover
             isOpen={isChat}
             onClose={endChat}
@@ -98,7 +104,9 @@ export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open, gobi }) => {
             </PopoverTrigger>
             <PopoverContent h={"full"}>
               <PopoverArrow />
-              <PopoverBody>{comment}</PopoverBody>
+              <PopoverBody fontWeight={"semibold"} fontSize={"xl"}>
+                <p>{parse(comment)}</p>
+              </PopoverBody>
             </PopoverContent>
           </Popover>
           <Box p={"4"} mx={"auto"} maxW={"min-content"}>
@@ -155,7 +163,7 @@ export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open, gobi }) => {
                 bg: "blue.500",
               }}
             >
-              今までありがとな！
+              おともをかえる
             </Button>
           </Stack>
         </Box>

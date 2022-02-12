@@ -22,10 +22,12 @@ export const TopPageView: VFC = () => {
   if (error) return <p>error</p>;
   if (!data) return <p>Loding...</p>;
 
+  console.log({ data });
+
   return (
     <main className="h-screen">
       <PokemonCard pokemon={data} open={open} gobi={gobi} />
-      {isOpen && <Modal Decider={Decider} close={close} />}
+      {isOpen && <Modal Decider={Decider} open={open} close={close} />}
     </main>
   );
 };

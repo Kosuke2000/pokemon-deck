@@ -9,7 +9,6 @@ export const mockComments: Comments = [
     comment:
       "僕が見てる景色とあなたが見えてる景色は違うんだ。僕が美しいと想った景色を君は美しいと思わないかもしれない",
   },
-  { comment: "...たった少しもあなたは待つことができないんですか" },
   { comment: "...すまない目的が何かは言えないんだ...本当にすまない" },
   { comment: "旅の過程にこそ価値がある" },
   { comment: "幸せとは旅の仕方であって、行き先のことではない" },
@@ -20,11 +19,12 @@ export const mockComments: Comments = [
   },
   { comment: "愛していない人間と旅に出てはならない" },
   { comment: "お財布と携帯、どこ" },
-  { comment: "おみやげ、何にする" },
+  { comment: "おみやげ買って" },
   { comment: "帰るまでが、旅行" },
   { comment: "飛行機の時間、確認する" },
   { comment: "おなかすいた〜" },
   { comment: "今夜は夜ふかし" },
   { comment: "青春バンザイ" },
   { comment: "ここからが本番" },
+  { comment: "すこし休む" },
 ];

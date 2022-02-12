@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useReducer, VFC } from "react";
 import { useForm } from "react-hook-form";
 
+import { Spacer } from "@/components/ui/Spacer";
+
 export const ACTION = [
   { type: "ピカチュウ", gobi: "チュウ" },
   { type: "ヒコザル", gobi: "ザル" },
@@ -51,6 +53,7 @@ const reducer = (state: State, action: Action) => {
 
 export interface DciderProps {
   close: () => void;
+  open: () => void;
 }
 
 export const useAPI_key = () => {
@@ -60,27 +63,47 @@ export const useAPI_key = () => {
 
   const [gobi, setGobi] = useState<string>("トル");
 
-  const Decider: VFC<DciderProps> = ({ close }) => {
+  const Decider: VFC<DciderProps> = ({ close, open }) => {
     const { register, handleSubmit } = useForm();
 
     type Data = { [index: string]: number };
     const onSubmit: (data: Data) => void = (data: Data) => {
-      dispatch(ACTION[data.index]);
-      setGobi(ACTION[data.index].gobi);
-      close();
+      data.index
+        ? (dispatch(ACTION[data.index]),
+          setGobi(ACTION[data.index].gobi),
+          close())
+        : open();
     };
 
     return (
-      <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex" }}>
-        <Select placeholder="すきなポケモンは？" {...register("index")}>
-          {ACTION.map((action, index) => (
-            <option key={index} value={index}>
-              {action.type}
-            </option>
-          ))}
-        </Select>
-        <Input type="submit" value="キミにきめた！" />
-      </form>
+      <>
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+          <Select placeholder="すきなポケモンは？" {...register("index")}>
+            {ACTION.map((action, index) => (
+              <option key={index} value={index}>
+                {action.type}
+              </option>
+            ))}
+          </Select>
+          <Spacer size={2} />
+          <Input
+            bg={"blue.400"}
+            color={"white"}
+            boxShadow={
+              "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+            }
+            _hover={{
+              bg: "blue.500",
+            }}
+            _focus={{
+              bg: "blue.500",
+            }}
+            type="submit"
+            value="キミにきめた！"
+          />
+        </form>
+        <Spacer size={4} />
+      </>
     );
   };
 
