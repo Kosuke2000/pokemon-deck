@@ -26,7 +26,7 @@ export const TopPageView: VFC = () => {
   console.log({ data });
 
   return (
-    <main>
+    <main className="h-screen">
       <PokemonCard pokemon={data} open={open} />
       {isOpen && <Modal Decider={Decider} close={close} />}
     </main>
