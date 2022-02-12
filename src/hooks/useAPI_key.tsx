@@ -10,10 +10,10 @@ export const ACTION = [
 ] as const;
 
 export const STORE = [
-  { API_key: "https://pokeapi.co/api/v2/pokemon/pikachu" },
-  { API_key: "https://pokeapi.co/api/v2/pokemon/chimchar" },
-  { API_key: "https://pokeapi.co/api/v2/pokemon/piplup" },
-  { API_key: "https://pokeapi.co/api/v2/pokemon/turtwig" },
+  { API_key: "pikachu" },
+  { API_key: "chimchar" },
+  { API_key: "piplup" },
+  { API_key: "turtwig" },
 ] as const;
 
 export type Action = typeof ACTION[number];
@@ -40,9 +40,9 @@ export interface DciderProps {
   close: () => void;
 }
 
-export const useMockPokemon = () => {
+export const useAPI_key = () => {
   const [{ API_key }, dispatch] = useReducer<Reducertype>(reducer, {
-    API_key: "https://pokeapi.co/api/v2/pokemon/turtwig",
+    API_key: "turtwig",
   });
 
   const Decider: VFC<DciderProps> = ({ close }) => {
@@ -56,7 +56,7 @@ export const useMockPokemon = () => {
 
     return (
       <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex" }}>
-        <Select {...register("index")}>
+        <Select placeholder="すきなポケモンは？" {...register("index")}>
           {ACTION.map((action, index) => (
             <option key={index} value={index}>
               {action.type}
