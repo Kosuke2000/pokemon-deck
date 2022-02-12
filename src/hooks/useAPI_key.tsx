@@ -7,6 +7,9 @@ export const ACTION = [
   { type: "ヒコザル" },
   { type: "ポッチャマ" },
   { type: "ナエトル" },
+  { type: "カビゴン" },
+  { type: "アブソル" },
+  { type: "ラプラス" },
 ] as const;
 
 export const STORE = [
@@ -14,6 +17,9 @@ export const STORE = [
   { API_key: "chimchar" },
   { API_key: "piplup" },
   { API_key: "turtwig" },
+  { API_key: "snorlax" },
+  { API_key: "absol" },
+  { API_key: "lapras" },
 ] as const;
 
 export type Action = typeof ACTION[number];
@@ -31,6 +37,12 @@ const reducer = (state: State, action: Action) => {
       return STORE[2];
     case ACTION[3].type:
       return STORE[3];
+    case ACTION[4].type:
+      return STORE[4];
+    case ACTION[5].type:
+      return STORE[5];
+    case ACTION[6].type:
+      return STORE[6];
     default:
       return state;
   }

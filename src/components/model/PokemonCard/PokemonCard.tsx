@@ -7,8 +7,13 @@ import {
   Text,
   Stack,
   useColorModeValue,
+  Popover,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
+  PopoverArrow,
 } from "@chakra-ui/react";
-import { VFC } from "react";
+import { useState, VFC } from "react";
 
 import { Pokemon } from "@/types/PokemonCard";
 
@@ -22,15 +27,14 @@ export interface PokemonProps {
 export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open }) => {
   const { name, abilities, types, sprites } = pokemon;
 
-  //   // フォームに入力されたポケモンネームをrequestに代入
-  //   const [request, setRequest] = useState<string>("pikachu");
+  const [isChat, setChatting] = useState(false);
+  const startChat = () => {
+    setChatting(true);
+    setTimeout(() => setChatting(false), 3000);
+  };
+  const endChat = () => setChatting(false);
 
-  //   // requestをAPIkeyに代入し、データを取得
-  //   const fetcher = (url: string) => axios.get(url).then((res) => res.data);
-  //   const { data, error } = useSWR(
-  //     `https://pokeapi.co/api/v2/pokemon/${request}`,
-  //     fetcher
-  //   );
+  const [comment, setComment] = useState("よろしく！");
 
   return (
     <Center py={6}>
@@ -43,23 +47,40 @@ export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open }) => {
         p={6}
         textAlign={"center"}
       >
-        <Avatar
-          size={"xl"}
-          src={sprites.front_default}
-          mb={4}
-          pos={"relative"}
-          _after={{
-            content: '""',
-            w: 4,
-            h: 4,
-            bg: "green.300",
-            border: "2px solid white",
-            rounded: "full",
-            pos: "absolute",
-            bottom: 0,
-            right: 3,
-          }}
-        />
+        <Popover
+          returnFocusOnClose={false}
+          isOpen={isChat}
+          onClose={endChat}
+          placement="bottom"
+          closeOnBlur={false}
+        >
+          <PopoverTrigger>
+            <Avatar
+              size={"xl"}
+              src={sprites.front_default}
+              mb={4}
+              pos={"relative"}
+              _after={{
+                content: '""',
+                w: 4,
+                h: 4,
+                bg: "green.300",
+                border: "2px solid white",
+                rounded: "full",
+                pos: "absolute",
+                bottom: 0,
+                right: 3,
+              }}
+            />
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverBody>
+              Are you sure you want to continue with your action?
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+
         <Heading fontSize={"2xl"} fontFamily={"body"}>
           {name}
         </Heading>
@@ -83,6 +104,8 @@ export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open }) => {
 
         <Stack mt={8} direction={"row"} spacing={4}>
           <Button
+            mb={5}
+            onClick={startChat}
             flex={1}
             fontSize={"xs"}
             rounded={"full"}
@@ -90,7 +113,7 @@ export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open }) => {
               bg: "gray.200",
             }}
           >
-            キミに決めた！
+            おしゃべり！
           </Button>
           <Button
             onClick={open}

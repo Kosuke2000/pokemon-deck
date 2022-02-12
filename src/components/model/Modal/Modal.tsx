@@ -1,6 +1,6 @@
 import { VFC } from "react";
 
-import { DciderProps } from "@/hooks/useMockPokemon";
+import { DciderProps } from "@/hooks/useAPI_key";
 
 export interface ModalProps {
   close: () => void;
