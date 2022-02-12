@@ -55,9 +55,8 @@ export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open, gobi }) => {
   const endChat = () => setChatting(false);
 
   return (
-    <Center h={"full"} minH={"max-content"}>
+    <Center minH={"max-content"}>
       <Box
-        h={"full"}
         w={"full"}
         display={"flex"}
         flexDirection={"column"}
@@ -66,11 +65,9 @@ export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open, gobi }) => {
         <Box
           minH={"max-content"}
           mx={"auto"}
-          h={"full"}
           maxW={"2xl"}
           w={"full"}
           bg={useColorModeValue("white", "gray.900")}
-          boxShadow={"2xl"}
           rounded={"lg"}
           px={4}
           py={8}
