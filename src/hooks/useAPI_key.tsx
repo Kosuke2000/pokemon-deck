@@ -1,15 +1,16 @@
 import { Select, Input } from "@chakra-ui/react";
+import { useState } from "react";
 import { useReducer, VFC } from "react";
 import { useForm } from "react-hook-form";
 
 export const ACTION = [
-  { type: "ピカチュウ" },
-  { type: "ヒコザル" },
-  { type: "ポッチャマ" },
-  { type: "ナエトル" },
-  { type: "カビゴン" },
-  { type: "アブソル" },
-  { type: "ラプラス" },
+  { type: "ピカチュウ", gobi: "チュウ" },
+  { type: "ヒコザル", gobi: "ザル" },
+  { type: "ポッチャマ", gobi: "チャマ" },
+  { type: "ナエトル", gobi: "トル" },
+  { type: "カビゴン", gobi: "ゴン" },
+  { type: "アブソル", gobi: "ソル" },
+  { type: "ラプラス", gobi: "ラス" },
 ] as const;
 
 export const STORE = [
@@ -57,12 +58,15 @@ export const useAPI_key = () => {
     API_key: "turtwig",
   });
 
+  const [gobi, setGobi] = useState<string>("トル");
+
   const Decider: VFC<DciderProps> = ({ close }) => {
     const { register, handleSubmit } = useForm();
 
     type Data = { [index: string]: number };
     const onSubmit: (data: Data) => void = (data: Data) => {
       dispatch(ACTION[data.index]);
+      setGobi(ACTION[data.index].gobi);
       close();
     };
 
@@ -80,8 +84,8 @@ export const useAPI_key = () => {
     );
   };
 
-  type ReturnType = [{ API_key: string }, VFC<DciderProps>];
-  const r: ReturnType = [{ API_key }, Decider];
+  type ReturnType = [{ API_key: string }, VFC<DciderProps>, string];
+  const r: ReturnType = [{ API_key }, Decider, gobi];
 
   return r;
 };

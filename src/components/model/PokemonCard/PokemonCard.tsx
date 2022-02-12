@@ -15,33 +15,40 @@ import {
 } from "@chakra-ui/react";
 import { useState, VFC } from "react";
 
-import { Pokemon } from "@/types/PokemonCard";
+import { Comments, Pokemon } from "@/types/PokemonCard";
 
 import { TypeBadge } from "@/components/model/PokemonCard/TypeBadge";
+
+import { mockComments } from "@/mocks/mockComment";
 
 export interface PokemonProps {
   pokemon: Pokemon;
   open: () => void;
+  gobi: string;
 }
 
-export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open }) => {
+export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open, gobi }) => {
   const { name, abilities, types, sprites } = pokemon;
 
+  const [comment, setComment] = useState("よろしく！");
   const [isChat, setChatting] = useState(false);
   const [disable, setDisable] = useState(false);
 
+  const pickComment = (comments: Comments) =>
+    comments[Math.floor(Math.random() * comments.length)].comment;
+
   const startChat = () => {
     setChatting(true);
+    const pickedComment = pickComment(mockComments);
+    setComment(`${pickedComment}${gobi}`);
     setDisable(true);
 
     setTimeout(() => {
       setChatting(false);
       setDisable(false);
-    }, 3000);
+    }, 5000);
   };
   const endChat = () => setChatting(false);
-
-  const [comment, setComment] = useState("よろしく！");
 
   return (
     <Center h={"full"}>
@@ -91,10 +98,7 @@ export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open }) => {
             </PopoverTrigger>
             <PopoverContent h={"full"}>
               <PopoverArrow />
-              <PopoverBody>
-                Are you sure you want to continue with your
-                action?aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-              </PopoverBody>
+              <PopoverBody>{comment}</PopoverBody>
             </PopoverContent>
           </Popover>
           <Box p={"4"} mx={"auto"} maxW={"min-content"}>

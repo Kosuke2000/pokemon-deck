@@ -11,11 +11,6 @@ export type Pokemon = {
   };
 };
 
-export type PokeCard = {
-  pokemon: Pokemon;
-  isRegistered: boolean;
-};
-
-export type PokeDeck = {
-  pokeCards: PokeCard[];
-};
+export type Comments = {
+  comment: string;
+}[];
