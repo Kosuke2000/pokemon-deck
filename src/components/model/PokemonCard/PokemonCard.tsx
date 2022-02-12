@@ -55,7 +55,7 @@ export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open, gobi }) => {
   const endChat = () => setChatting(false);
 
   return (
-    <Center h={"full"}>
+    <Center h={"full"} minH={"max-content"}>
       <Box
         h={"full"}
         w={"full"}
@@ -75,7 +75,7 @@ export const PokemonCard: VFC<PokemonProps> = ({ pokemon, open, gobi }) => {
           py={8}
           textAlign={"center"}
         >
-          <p className="p-4 text-4xl font-bold">{parse("たびのおとも")}</p>
+          <p className=" text-4xl font-bold">{parse("たびのおとも")}</p>
           <Popover
             isOpen={isChat}
             onClose={endChat}
